@@ -1,0 +1,10 @@
+---
+- hosts: servers
+  become: true
+  tasks:
+    - name: install httpd package
+      yum: pkg=httpd state=latest
+    - name: wait for service listening on port 80
+      wait_for:
+         port: 80
+         state: started

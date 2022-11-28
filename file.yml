@@ -1,0 +1,15 @@
+#This is my first playbook
+---
+ - hosts: servers
+   become: yes
+   vars_prompt:
+    - name: devops
+      prompt: please select the package name
+   tasks:
+    - name: package " {{ devops }}" installation 
+      action: yum pkg= "{{ devops }}" state=present
+      notify: service start 
+   handlers:
+    - name: service start
+      action: service name="{{ devops }}" state=started
+ 
