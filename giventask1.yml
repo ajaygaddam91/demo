@@ -1,0 +1,26 @@
+---
+- hosts: servers
+  become: true
+  tasks:
+    - name: creating the folder
+      file:
+       path: /home/targetuser/demo1folder
+       state: directory
+
+    - name: Going to the folder
+      file:
+       path: /home/targetuser/demo1folder
+    - name: downloading the current release tarball to the system
+      get_url:
+        url: https://downloads.mysql.com/archives/get/p/23/file/mysql-server_8.0.22-1debian10_amd64.deb-bundle.tar
+        dest: /home/targetuser/demo1folder
+        mode: 0777
+    - name: Unzipping the file
+      unarchive:
+        src: /home/targetuser/demo1folder/mysql-server_8.0.22-1debian10_amd64.deb-bundle.tar
+        dest: /home/targetuser/demo1folder
+        remote_src: true
+    - name: Deleting the tar file
+      file:
+       path: /home/targetuser/demo1folder/mysql-server_8.0.22-1debian10_amd64.deb-bundle.tar
+       state: absent

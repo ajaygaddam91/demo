@@ -2,4 +2,5 @@
 - hosts: servers
   become: true
   tasks:
-  - user: name=john
+  - name: creating users
+    user: name=John
