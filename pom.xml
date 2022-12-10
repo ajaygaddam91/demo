@@ -6,6 +6,7 @@
   <artifactId>ssample</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
+  <packaging>war</packaging>
 
   <name>ssample</name>
   <url>http://maven.apache.org</url>
